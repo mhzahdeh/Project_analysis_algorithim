@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  opensearch:
+    image: opensearchproject/opensearch:2.11
+    environment:
+      - discovery.type=single-node
+      - plugins.security.disabled=true
+    ports:
+      - "9200:9200"
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    environment:
+      - OPENSEARCH_HOST=http://opensearch:9200
+    depends_on:
+      - opensearch
+    env_file:
+      - .env
+
+  frontend-api:
+    image: tiangolo/uvicorn-gunicorn-fastapi:python3.10
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./frontend-api:/app
+    depends_on:
+      - backend
+
+volumes:
+  opensearch-data:
