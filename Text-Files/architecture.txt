@@ -1,0 +1,26 @@
+your_project/
+├── backend/
+│   ├── apis/
+│   │   ├── doordash_client.py
+│   │   └── ubereats_client.py
+│   ├── processing/
+│   │   ├── data_processor.py
+│   │   └── analytics.py
+│   ├── storage/
+│   │   ├── opensearch_connector.py
+│   │   └── models.py
+│   ├── scheduler/
+│   │   └── daily_job.py
+│   ├── tests/
+│   │   └── test_pipeline.py
+│   └── main.py
+├── frontend-api/
+│   ├── routers/
+│   │   ├── analytics.py
+│   │   └── healthcheck.py
+│   └── main.py
+├── docker/
+│   └── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+└── .env
